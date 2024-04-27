@@ -1,9 +1,11 @@
 <?php
 
+use common\components\ConnectionSqlite;
+
 return [
     'components' => [
         'db' => [
-            'class' => \yii\db\Connection::class,
+            'class' => ConnectionSqlite::class,
             //'dsn' => 'mysql:host=localhost;dbname=test_yii2',
             //'dsn' => 'mysql:host=mysql;dbname=test_yii2',
             'dsn' => 'sqlite:'.__DIR__ . '/../../sqlite.db',
