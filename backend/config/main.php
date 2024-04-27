@@ -12,9 +12,6 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
-        'testtasks' => [
-            'class' => 'app\modules\testtasks\Module',
-         ],
         'photobank' => [
             'class' => 'app\modules\photobank\Module',
         ],

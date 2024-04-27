@@ -4,7 +4,6 @@ namespace app\modules\photobank\models;
 
 use Yii;
 use yii\base\Model;
-use yii\web\UploadedFile;
 
 class PhotobankForm extends Model
 {

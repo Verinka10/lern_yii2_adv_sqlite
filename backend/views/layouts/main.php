@@ -38,11 +38,11 @@ AppAsset::register($this);
     $menuItems = [
        // ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'Photobank upload', 'url' => ['/photobank/default/upload']],
-        ['label' => 'Photobank list', 'url' => ['/photobank/default/index']],
+        ['label' => 'Photobank list', 'url' => ['/photobank/default/index-view']],
         ['label' => 'Photobank api', 'url' => ['/photobank/default/test-api']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        //$menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     }     
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav me-auto mb-2 mb-md-0'],

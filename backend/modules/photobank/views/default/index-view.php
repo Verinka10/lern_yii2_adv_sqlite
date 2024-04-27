@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],*/
             [
             'class' => ActionColumn::class,
-            'template' => '{download}',
+            'template' => '{download} / {delete}',
             'urlCreator' => function ($action, Photobank $model, $key, $index, $column) {
                 return Url::toRoute([$action, 'id' => $model->id]);
             },

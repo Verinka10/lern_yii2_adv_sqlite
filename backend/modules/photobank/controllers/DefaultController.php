@@ -39,7 +39,7 @@ class DefaultController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    /*public function actionIndex()
     {
         $searchModel = new PhotobankSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -48,7 +48,7 @@ class DefaultController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-    }
+    }*/
 
     /**
      * Displays a single Photobank model.
@@ -56,19 +56,19 @@ class DefaultController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    /*public function actionView($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-    }
+    }*/
 
     /**
      * Creates a new Photobank model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    /*public function actionCreate()
     {
         $model = new Photobank();
 
@@ -83,7 +83,7 @@ class DefaultController extends Controller
         return $this->render('create', [
             'model' => $model,
         ]);
-    }
+    }*/
 
     /**
      * Updates an existing Photobank model.
@@ -92,7 +92,7 @@ class DefaultController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    /*public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
@@ -103,7 +103,7 @@ class DefaultController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
-    }
+    }*/
 
     /**
      * Deletes an existing Photobank model.
@@ -116,7 +116,7 @@ class DefaultController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index-view']);
     }
 
     /**
@@ -151,7 +151,9 @@ class DefaultController extends Controller
         ]);
     }
 
-
+    /**
+     * @return \yii\web\Response|string
+     */
     public function actionUpload()
     {
         
@@ -173,7 +175,10 @@ class DefaultController extends Controller
         return $this->render('upload', ['model' => $model]);
     }
 
-
+    /**
+     * @param int $model_id
+     * @return \yii\web\Response
+     */
     public function actionDownload($model_id)
     {
         try {
@@ -192,13 +197,16 @@ class DefaultController extends Controller
     
             \Yii::$app->response->sendFile($tmpFile)->send();
             unlink($tmpFile);
+
         } catch (\Exception $e) {
             \Yii::$app->session->setFlash('error', $e->getMessage());
             return $this->redirect(\Yii::$app->request->referrer);
         }
     }
 
-
+    /**
+     * @return string|boolean|string
+     */
     public function actionTestApi()
     {
         if ($this->request->isPost) {

@@ -10,6 +10,7 @@ use yii\web\UploadedFile;
 use dosamigos\transliterator\TransliteratorHelper;
 use yii\helpers\FileHelper;
 use yii\imagine\Image;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "photobank".
@@ -76,6 +77,14 @@ class Photobank extends \yii\db\ActiveRecord
             'created_user_id' => 'Created User ID',
         ];
     }
+    
+    public function init()
+    {
+        $this->on(ActiveRecord::EVENT_BEFORE_INSERT, [$this, 'updateImage']);
+        $this->on(ActiveRecord::EVENT_BEFORE_UPDATE, [$this, 'updateImage']);
+        $this->on(ActiveRecord::EVENT_AFTER_DELETE, [$this, 'deleteImage']);
+        return parent::init();
+    }
 
     /**
      * Gets query for [[CreatedUser]].
@@ -133,9 +142,14 @@ class Photobank extends \yii\db\ActiveRecord
             ],*/
         ];
     }
-    
-    public function beforeSave($insert) {
-        
+
+    /**
+     * Update image after insert or update model
+     * TODO update
+     * @return boolean
+     */
+    public function Image() {
+
         // for one file, manualy 
         if (!$this->file instanceof UploadedFile) {
             $this->file = UploadedFile::getInstance($this, $this->file);
@@ -147,14 +161,10 @@ class Photobank extends \yii\db\ActiveRecord
             }
             $this->filename = strtolower(TransliteratorHelper::process($this->file->name));
             for($i=1; file_exists($directory . '/' . $this->filename); ++$i) {
-                //$filename = preg_replace("/(\.\w+)$/", "_$i$1", $this->filename);
                 // repalce _1 _2 _3
                 $this->filename = preg_replace("/(_\d+)?(\.\w+)$/", "_$i$2", $this->filename); 
-                //$this->filename = 
-                //dump($this->filename);
-                if ($i>10) break;
             }
-            //dd($this->filename);
+
             $this->filename_origin = $this->file->name;
             $this->content_type = $this->file->type;
             if (!$this->file->saveAs($directory . '/' . $this->filename)) {
@@ -162,9 +172,20 @@ class Photobank extends \yii\db\ActiveRecord
                 return false;
             }
         }
-        return parent::beforeSave($insert);
     }
     
+    /**
+     * Delete image
+     */
+    public function deleteImage() {
+        
+        @unlink($this->getPathFileName());
+        @unlink($this->getDirectoryUpload() . '/thumbs/' . $this->filename);
+    }
+
+    /**
+     * @return string|boolean
+     */
     public function getDirectoryUpload() {
         //return \Yii::$app->basePath . '/' . $this->path;
         return Yii::getAlias($this->path);
@@ -191,7 +212,7 @@ class Photobank extends \yii\db\ActiveRecord
         }
         return Yii::getAlias($this->url . '/' .  $this->filename);
     }
-    
+
     /**
      * @param string $fileName
      * @return string|null
