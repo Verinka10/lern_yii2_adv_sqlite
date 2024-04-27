@@ -8,10 +8,9 @@
 <h2>Install</h2>
 <h4>Installing using Docker</h4>
 <pre>
+git clone https://github.com/Verinka10/lern_yii2_adv_sqlite.git
 docker-compose up --build -d
-docker-compose exec backend composer install
-docker-compose exec backend init --env=Development --overwrite=n
-docker-compose exec backend yii migrate
+docker-compose exec backend init-project.sh
 open http://localhost:21080
 </pre>
 
