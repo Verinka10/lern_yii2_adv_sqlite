@@ -148,7 +148,7 @@ class Photobank extends \yii\db\ActiveRecord
      * TODO update
      * @return boolean
      */
-    public function Image() {
+    public function updateImage() {
 
         // for one file, manualy 
         if (!$this->file instanceof UploadedFile) {
