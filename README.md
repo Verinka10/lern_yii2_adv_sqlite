@@ -17,14 +17,10 @@ open http://localhost:21080
 
 <h4>Structure</h4>
 <pre>
-    /backend/modules/testtasks - src CRUD book, author and etc
-    /common/behaviors - behaviors
-    /common/components/jobs - jobs (SubscriberSend)
-    /console/migrations - migrations (init, report_book)
+    /backend/modules/photobank - src
+    /console/migrations - migrations (init, photobank)
 </pre>
-<h4>Ntice</h4>
-<p>After creating a book, a job (SubscriberSend) is created to send SMS</p>
-<p>User for test: test/12345678</p>
+
 
 
 
