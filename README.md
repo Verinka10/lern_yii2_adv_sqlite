@@ -8,22 +8,19 @@
 <h2>Install</h2>
 <h4>Installing using Docker</h4>
 <pre>
-composer install    
-docker-compose up -d
+docker-compose up --build -d
+docker-compose exec backend composer install
+docker-compose exec backend init --env=Development --overwrite=n
 docker-compose exec backend yii migrate
 open http://localhost:21080
 </pre>
 
 <h4>Structure</h4>
 <pre>
-    /backend/modules/testtasks - src CRUD book, author and etc
-    /common/behaviors - behaviors
-    /common/components/jobs - jobs (SubscriberSend)
-    /console/migrations - migrations (init, report_book)
+    /backend/modules/photobank - src
+    /console/migrations - migrations (init, photobank)
 </pre>
-<h4>Ntice</h4>
-<p>After creating a book, a job (SubscriberSend) is created to send SMS</p>
-<p>User for test: test/12345678</p>
+
 
 
 
