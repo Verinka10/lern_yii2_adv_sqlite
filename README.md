@@ -10,7 +10,7 @@
 <pre>
 git clone https://github.com/Verinka10/lern_yii2_adv_sqlite.git
 docker-compose up --build -d
-docker-compose exec backend init-project.sh
+docker-compose exec backend bash -i init-project.sh
 open in browser http://localhost:21080
 </pre>
 
