@@ -55,4 +55,5 @@ themes/classic/views/
 # main
 backend/web/upload
 XXX_*
-common/runtime
+#common/runtime
+sqlite.db
