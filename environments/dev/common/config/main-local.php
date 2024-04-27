@@ -6,7 +6,7 @@ return [
             'class' => \yii\db\Connection::class,
             //'dsn' => 'mysql:host=localhost;dbname=test_yii2',
             //'dsn' => 'mysql:host=mysql;dbname=test_yii2',
-            'dsn' => 'sqlite:'.__DIR__ . 'runtime/sqlite.db',
+            'dsn' => 'sqlite:'.__DIR__ . '/../runtime/sqlite.db',
             'username' => 'root',
             'password' => '1hHpfA%ew1',
             'charset' => 'utf8',
