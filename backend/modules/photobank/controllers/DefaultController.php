@@ -16,6 +16,7 @@ use yii\web\ServerErrorHttpException;
  */
 class DefaultController extends Controller
 {
+
     /**
      * @inheritDoc
      */
@@ -209,12 +210,6 @@ class DefaultController extends Controller
      */
     public function actionTestApi()
     {
-        if ($this->request->isPost) {
-            $id = $this->request->post()['id'];
-            $model = $this->findModel($id);
-            return json_encode($model->getAttributes());
-
-        }
         return $this->render('test-api');
     }
 }

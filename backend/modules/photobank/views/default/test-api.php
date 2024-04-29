@@ -20,12 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
 	
 	<?php echo Html::button('get', ['onclick' => '
         $.ajax({
-            type: "POST",
-            url: "",
-            dataType: "json",
-            data: {
-                id: $("select[name=models]").val(),
-            }, 
+            type: "GET",
+            url: "/photobank/images/" + $("select[name=models]").val(),
             success: function(result) {
                  $("#content").text(JSON.stringify(result, null, " "));
             },

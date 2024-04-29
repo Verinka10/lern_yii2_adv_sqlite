@@ -19,6 +19,10 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
+            //need?
+            //'parsers' => [
+            //    'application/json' => yii\web\JsonParser::class,
+            //]
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -46,6 +50,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                 ['class' => 'yii\rest\UrlRule', 'controller' => 'photobank/images'],
             ],
         ],
     ],

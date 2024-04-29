@@ -77,7 +77,29 @@ class Photobank extends \yii\db\ActiveRecord
             'created_user_id' => 'Created User ID',
         ];
     }
-    
+
+    /**
+     * {@inheritDoc}
+     * @see \yii\db\BaseActiveRecord::fields()
+     */
+    public function fields()
+    {
+        /*return array_merge($this->attributes(), [
+             'filename' => function () { return $this->filename; },
+        ]);*/
+        return [
+            'id',
+            'filename',
+            'filename_origin',
+            'created_at',
+            'updated_at',
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     * @see \yii\db\BaseActiveRecord::init()
+     */
     public function init()
     {
         $this->on(ActiveRecord::EVENT_BEFORE_INSERT, [$this, 'updateImage']);
